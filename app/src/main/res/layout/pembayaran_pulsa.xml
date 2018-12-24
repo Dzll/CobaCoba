@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorBiruLight2"
+        android:layout_margin="5dp"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="20dp"
+                        android:text="Rp "
+                        />
+
+                    <TextView
+                        android:id="@+id/harga_pls"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="20dp"
+                        android:text="nominal"
+                        />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorHitam"
+                        android:text="Pulsa : "
+                        />
+                    <TextView
+                        android:id="@+id/jml_pls"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorHitam"
+                        android:text=" Jumlah Pulsa"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorHitam"
+                        android:text="Dzulkarnainc - "
+                        />
+
+                    <EditText
+                        android:id="@+id/pet_nomor"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_marginBottom="5dp"
+                        android:inputType="phone"
+                        android:background="@drawable/edittext_rounded_corners_border2"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="5dp"
+                        android:textSize="12dp"
+                        android:hint="Masukkan nomor"
+                        />
+
+                    <TextView
+                        android:id="@+id/ptx_nomor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorHitam"
+                        android:visibility="gone"
+                        />
+
+                    <Button
+                        android:id="@+id/oke"
+                        android:layout_height="37dp"
+                        android:layout_width="match_parent"
+                        android:backgroundTint="@color/colorBiru"
+                        android:textColor="@color/colorPutih"
+                        android:text="OK"
+                        />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Rekomendasi"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/byr_dgn_topup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="2dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <ImageView
+                    android:layout_weight="0.3"
+                    android:padding="10dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_action_cash"/>
+
+                <LinearLayout
+                    android:layout_weight="0"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txbyrrr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:text="Bayar"/>
+
+                    <TextView
+                        android:id="@+id/bayar_topUp"
+                        android:layout_below="@id/txbyrrr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        android:text="Rp 999000"
+                        android:padding="7dp"
+                        />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_action_right"/>
+            </TableRow>
+        </TableLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Bank Transfer"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="6dp"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="5dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <ImageView
+                        android:layout_weight="0.4"
+                        android:layout_width="60dp"
+                        android:src="@mipmap/ic_mandirii"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:layout_weight="0.7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="18.5dp"
+                        android:textSize="17dp"
+                        android:text="Bank Mandiri"
+                        />
+
+                    <ImageView
+                        android:layout_weight="0.6"
+                        android:layout_marginTop="18dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_action_right"
+                        />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="6dp"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="5dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <ImageView
+                        android:layout_weight="0.4"
+                        android:layout_width="60dp"
+                        android:src="@mipmap/ic_bca"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:layout_weight="0.9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="18.5dp"
+                        android:textSize="17dp"
+                        android:text="Bank BCA"
+                        />
+
+                    <ImageView
+                        android:layout_weight="0.6"
+                        android:layout_marginTop="18dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_action_right"
+                        />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="6dp"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="5dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <ImageView
+                        android:layout_weight="0.4"
+                        android:layout_width="60dp"
+                        android:src="@mipmap/ic_bni"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:layout_weight="0.97"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="18.5dp"
+                        android:textSize="17dp"
+                        android:text="Bank BNI"
+                        />
+
+                    <ImageView
+                        android:layout_weight="0.6"
+                        android:layout_marginTop="18dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_action_right"
+                        />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="6dp"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="5dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <ImageView
+                        android:layout_weight="0.4"
+                        android:layout_width="60dp"
+                        android:src="@mipmap/ic_bri"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:layout_weight="0.97"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="18.5dp"
+                        android:textSize="17dp"
+                        android:text="Bank BRI"
+                        />
+
+                    <ImageView
+                        android:layout_weight="0.6"
+                        android:layout_marginTop="18dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_action_right"
+                        />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="6dp"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="5dp">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <ImageView
+                        android:layout_weight="0.43"
+                        android:layout_width="60dp"
+                        android:src="@mipmap/ic_cimb"
+                        android:layout_height="60dp" />
+
+                    <TextView
+                        android:layout_weight="0.95"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="18.5dp"
+                        android:textSize="17dp"
+                        android:text="Bank CIMB"
+                        />
+
+                    <ImageView
+                        android:layout_weight="0.66"
+                        android:layout_marginTop="18dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_action_right"
+                        />
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>
