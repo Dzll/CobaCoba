@@ -63,4 +63,10 @@ public interface ApiService {
     @GET("transaksi_data.php")
     Call<List<ModelDataTransaksi>> getTransaksiData(@Query("id_user") String id);
 
+    // Data Cash
+
+    @FormUrlEncoded
+    @POST("cash_data.php")
+    Call<List<ModelDataCash>> getCashData();
+
 }

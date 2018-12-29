@@ -2,6 +2,7 @@ package com.dzulkarnain_inc.pulsa;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -63,8 +64,6 @@ public class DaftarPulsa extends AppCompatActivity{
 
         listview = (ListView) findViewById(R.id.listpulsa);
         listview.setDividerHeight(0);
-
-        //textnomer = (EditText)findViewById(R.id.et_nomer);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigasi_menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

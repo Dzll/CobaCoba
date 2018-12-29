@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,7 +52,7 @@ public class UserActivity extends AppCompatActivity {
     public static final String KUNCI = "kunci";
     public static final String KUNCI_nama = "kunci_nama";
     public static final String KUNCI_nomor = "kunci_nomor";
-    private String kunci_id, kunci_nama, kunci_nomor;
+    public String kunci_id, kunci_nama, kunci_nomor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,24 +67,8 @@ public class UserActivity extends AppCompatActivity {
         nama = (TextView)findViewById(R.id.tx_nama_user);
         nomor = (TextView)findViewById(R.id.tx_nomor_user);
 
-        if (aidi.getText().toString().trim().matches("Aidi")){
-            aidi.setText(AIDI_USER);
-            nama.setText(NAMA_USER);
-            nomor.setText(NOMOR_USER);
-            Toast.makeText(UserActivity.this, "->"+aidi.getText()+"<-", Toast.LENGTH_LONG).show();
-        }else {
-            LoadData();
-            UpdateView();
-            Toast.makeText(UserActivity.this, "->>"+aidi.getText()+"<<-", Toast.LENGTH_LONG).show();
-        }
-
-//        aidi.setText(AIDI_USER);
-//        nama.setText(NAMA_USER);
-//        nomor.setText(NOMOR_USER);
-
-//        LoadData();
-//        UpdateView();
-//        Toast.makeText(UserActivity.this, "->>"+aidi.getText()+"<<-", Toast.LENGTH_LONG).show();
+        LoadData();
+        UpdateView();
 
         getSupportActionBar().setTitle("User Account");
 
@@ -95,19 +80,26 @@ public class UserActivity extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.listTransaksi);
         listview.setDividerHeight(0);
 
+        final String a = aidi.getText().toString();
+        final String b = nama.getText().toString();
+        final String c = nomor.getText().toString();
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigasi_menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.menu_pulsa:
-                        saveData();
-                        startActivity(new Intent(UserActivity.this, DaftarPulsa.class));
+                        saveData(a, b, c);
+                        kirimData(a, b);
+                        Intent intent = new Intent(UserActivity.this, DaftarPulsa.class);
+                        startActivity(intent);
                         UserActivity.this.overridePendingTransition(R.transition.none, R.transition.fade_out);
                         finish();
                         break;
                     case R.id.menu_topup:
-                        saveData();
+                        saveData(a, b, c);
+                        kirimData(a, b);
                         startActivity(new Intent(UserActivity.this, SaldoActivity.class));
                         UserActivity.this.overridePendingTransition(R.transition.none, R.transition.fade_out);
                         finish();
@@ -157,15 +149,6 @@ public class UserActivity extends AppCompatActivity {
                     adapter = new ListDataTransaksi(UserActivity.this, R.layout.item_transaksi, dataTransaksi);
                     listview.setAdapter(adapter);
 
-//                    if (adapter.getCount() < 1 ) {
-//                        layout_loading.setVisibility(View.VISIBLE);
-//                        String error = "Daftar Kosong";
-//                        text_load.setText(error);
-//                        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_data_kosong);
-//                        icon_load.setImageBitmap(icon);
-//                    } else {
-//                        layout_loading.setVisibility(View.GONE);
-//                    }
                     loading.dismiss();
                 }
             }
@@ -201,7 +184,6 @@ public class UserActivity extends AppCompatActivity {
     }
 
     // Menu Navbar
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_logout, menu);
@@ -222,6 +204,7 @@ public class UserActivity extends AppCompatActivity {
                                 clearData();
                                 Intent out = new Intent(UserActivity.this, LoginActivity.class);
                                 startActivity(out);
+                                Toast.makeText(UserActivity.this, "Log Out !!", Toast.LENGTH_SHORT).show();
                                 finish();
                             }})
 
@@ -231,15 +214,15 @@ public class UserActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void saveData(){
+    public void saveData(String id,String nam, String nom){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KUNCI, aidi.getText().toString());
-        editor.putString(KUNCI_nama, nama.getText().toString());
-        editor.putString(KUNCI_nomor, nomor.getText().toString());
+        editor.putString(KUNCI, id);
+        editor.putString(KUNCI_nama, nam);
+        editor.putString(KUNCI_nomor, nom);
         editor.apply();
 
-        Toast.makeText(UserActivity.this, "Save Data!!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(UserActivity.this, "Save Data!! -> "+id+" - "+nam+" - "+nom, Toast.LENGTH_LONG).show();
     }
     public void LoadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
@@ -248,16 +231,35 @@ public class UserActivity extends AppCompatActivity {
         kunci_nomor = sharedPreferences.getString(KUNCI_nomor, "");
     }
     public void UpdateView(){
-        aidi.setText(kunci_id);
-        nama.setText(kunci_nama);
-        nomor.setText(kunci_nomor);
+        if (!kunci_id.isEmpty()){
+
+            aidi.setText(kunci_id);
+            nama.setText(kunci_nama);
+            nomor.setText(kunci_nomor);
+            //Toast.makeText(UserActivity.this, "->>"+aidi.getText()+"<<-", Toast.LENGTH_LONG).show();
+
+        }else {
+
+            aidi.setText(AIDI_USER);
+            nama.setText(NAMA_USER);
+            nomor.setText(NOMOR_USER);
+            //Toast.makeText(UserActivity.this, "->"+aidi.getText()+"<-", Toast.LENGTH_LONG).show();
+
+        }
     }
     public void clearData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear().commit();
+        aidi.setText("Aidi");
     }
-
+    public void kirimData(String nama, String nomor){
+        SharedPreferences sharedPreferences = getSharedPreferences("kirim_datanya", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("kirim_id", nama);
+        editor.putString("kirim_nama", nomor);
+        editor.apply();
+    }
 
 
 }

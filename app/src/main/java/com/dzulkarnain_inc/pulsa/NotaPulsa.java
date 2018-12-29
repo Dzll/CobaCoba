@@ -37,7 +37,7 @@ public class NotaPulsa extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(NotaPulsa.this, DaftarPulsa.class));
+                startActivity(new Intent(NotaPulsa.this, UserActivity.class));
                 NotaPulsa.this.overridePendingTransition(R.transition.none, R.transition.fade_out);
                 finish();
                 return true;

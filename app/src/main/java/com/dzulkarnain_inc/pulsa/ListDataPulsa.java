@@ -28,14 +28,12 @@ public class ListDataPulsa extends ArrayAdapter<ModelData> {
     private ArrayList<ModelData> list;
     private LayoutInflater inflater;
     private int res;
-    private String no;
 
     public ListDataPulsa(@NonNull Context context, int resource, ArrayList<ModelData> list) {
         super(context, resource, list);
         this.list = list;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.res = resource;
-        //this.no = nomer;
     }
 
     @NonNull
@@ -74,7 +72,6 @@ public class ListDataPulsa extends ArrayAdapter<ModelData> {
 
                 Intent intent = new Intent(context, PembayaranPulsa.class);
                 intent.putExtra(ModelData.idPulsa, list.get(position).getIdPulsa());
-                //intent.putExtra("no", no);
                 context.startActivity(intent);
 
             }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.usb.UsbRequest;
@@ -67,20 +68,25 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        log_email = (EditText)findViewById(R.id.log_email);
-        log_password = (EditText)findViewById(R.id.log_password);
+        // Ngehapus dataPrefernece User ben mboiss
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().commit();
 
-        btn_login = (Button)findViewById(R.id.btn_login);
+        log_email = (EditText) findViewById(R.id.log_email);
+        log_password = (EditText) findViewById(R.id.log_password);
+
+        btn_login = (Button) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String e = log_email.getText().toString().trim();
                 String p = log_password.getText().toString().trim();
 
-                if (e.equals("")){
+                if (e.equals("")) {
                     log_email.setError("Masukkan Email !!");
                 }
-                if (p.equals("")){
+                if (p.equals("")) {
                     log_password.setError("Masukkan Password !!");
                 }
 
@@ -117,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void LoginDataUser(final String email, final String password){
+    public void LoginDataUser(final String email, final String password) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(MainActivity.ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -133,34 +139,33 @@ public class LoginActivity extends AppCompatActivity {
 
                 // tambahkan
                 dataLoginUser.clear();
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && !response.body().isEmpty()) {
 
                     String imel = response.body().get(0).getEmailUser();
                     String pass = response.body().get(0).getPasswordUser();
 
-                    if (log_email.getText().toString().trim().equals("")){
+                    if (log_email.getText().toString().trim().equals("")) {
                         log_email.setError("Email Kosong !!");
                     }
-                    if (log_password.getText().toString().trim().equals("")){
+                    if (log_password.getText().toString().trim().equals("")) {
                         log_password.setError("Password Kosong !!");
                     }
 
-                    if (email.trim().equals(imel) && password.trim().equals(pass)){
+                    if (email.trim().equals(imel) && password.trim().equals(pass)) {
                         Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                         intent.putExtra("aidi_user", response.body().get(0).getId_user());
                         intent.putExtra("nama_user", response.body().get(0).getNama_user());
                         intent.putExtra("nomor_user", response.body().get(0).getNotelp_user());
                         startActivity(intent);
-                        Toast.makeText(LoginActivity.this, "Selamat Datang, "+response.body().get(0).getNama_user() + " !!", Toast.LENGTH_LONG).show();
-                        loading.dismiss();
-                    }
-                    if (!email.trim().equals(imel) || !password.trim().equals(pass)){
-                        Toast.makeText(LoginActivity.this, "Email / Password salah !!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Selamat Datang, " + response.body().get(0).getNama_user() + " !!", Toast.LENGTH_LONG).show();
+                        finish();
                         loading.dismiss();
                     }
 
-                    loading.dismiss();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Email / Password salah !!", Toast.LENGTH_SHORT).show();
                 }
+                loading.dismiss();
             }
 
             @Override

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -35,9 +36,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PembayaranPulsa extends AppCompatActivity {
 
-    String ID_PULSA;
+    String ID_PULSA, ID_USER_BELI, NAMA_USER_BELI;
 
-    TextView harga_pl, jumlah_pl;
+    TextView harga_pl, jumlah_pl, beli_id, beli_nama;
     ProgressDialog loading;
 
     @Override
@@ -51,9 +52,17 @@ public class PembayaranPulsa extends AppCompatActivity {
         final Date currentTime = new java.sql.Date(System.currentTimeMillis());
 
         ID_PULSA = getIntent().getStringExtra(ModelData.idPulsa);
+        SharedPreferences sharedPreferences = getSharedPreferences("kirim_datanya", MODE_PRIVATE);
+        ID_USER_BELI = sharedPreferences.getString("kirim_id", "");
+        NAMA_USER_BELI = sharedPreferences.getString("kirim_nama", "");
 
         harga_pl = (TextView) findViewById(R.id.harga_pls);
         jumlah_pl = (TextView) findViewById(R.id.jml_pls);
+        beli_id = (TextView)findViewById(R.id.beli_id);
+        beli_nama = (TextView)findViewById(R.id.beli_nama);
+
+        beli_id.setText(ID_USER_BELI);
+        beli_nama.setText(NAMA_USER_BELI);
 
         final TextView ptx_nomor = (TextView)findViewById(R.id.ptx_nomor);
         final EditText pet_nomor = (EditText)findViewById(R.id.pet_nomor);
@@ -97,9 +106,10 @@ public class PembayaranPulsa extends AppCompatActivity {
                                     intent.putExtra("total", harga_pl.getText().toString());
 
                                     loading = ProgressDialog.show(PembayaranPulsa.this, null, "Please wait...", true, false);
-                                    tambahDataTransaksi("1", "Dzll", pet_nomor.getText().toString(), ID_PULSA, jumlah_pl.getText().toString(), harga_pl.getText().toString(), currentTime.toString());
+                                    tambahDataTransaksi(beli_id.getText().toString(), beli_nama.getText().toString(), pet_nomor.getText().toString(), ID_PULSA, jumlah_pl.getText().toString(), harga_pl.getText().toString(), currentTime.toString());
 
                                     startActivity(intent);
+                                    finish();
                                 }})
 
                             .setNegativeButton("Batal", null).show();
@@ -152,7 +162,7 @@ public class PembayaranPulsa extends AppCompatActivity {
     }
 
 
-    // Animasi Transisi
+    // Animasi back header Transisi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
