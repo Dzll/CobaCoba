@@ -1,9 +1,5 @@
 package com.dzulkarnain_inc.pulsa;
 
-
-
-import com.dzulkarnain_inc.pulsa.ModelData;
-
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -15,10 +11,6 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-
-/**
- * Created by JhonDev on 05/10/2016.
- */
 
 public interface ApiService {
 

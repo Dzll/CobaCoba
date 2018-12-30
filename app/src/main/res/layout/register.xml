@@ -99,7 +99,7 @@
                     android:padding="7dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorHitam"
-                    android:text="Sudah punya akun ??"
+                    android:text="Sudah punya akun?"
                     />
 
                 <TextView

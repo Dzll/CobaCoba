@@ -64,8 +64,8 @@
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="backgroundColor" value="000000" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="F:\user.png" />
-                                      <entry key="outputName" value="header_user" />
+                                      <entry key="imageAsset" value="D:\Education\FILE KULIAH\File Belajar Programming\Programming Android Studio\Kampus Android\pulsa\app\src\main\res\tx_logo.png" />
+                                      <entry key="outputName" value="logo_text" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -75,7 +75,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
+                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
                           </map>
                         </option>
                       </PersistentState>

@@ -95,7 +95,7 @@
                     android:padding="7dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorHitam"
-                    android:text="Belum punya akun ?? "
+                    android:text="Belum punya akun? "
                     />
                 <TextView
                     android:id="@+id/et_register"
