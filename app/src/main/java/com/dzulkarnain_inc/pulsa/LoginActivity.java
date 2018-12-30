@@ -132,36 +132,23 @@ public class LoginActivity extends AppCompatActivity {
         ApiService service = retrofit.create(ApiService.class);
 
         loading = ProgressDialog.show(LoginActivity.this, null, "Please wait...", true, false);
-        Call<List<ModelDataUser>> call = service.getLoginData(email, password);
-        call.enqueue(new Callback<List<ModelDataUser>>() {
+        Call<ModelDataUser> call = service.getLoginData(email, password);
+        call.enqueue(new Callback<ModelDataUser>() {
             @Override
-            public void onResponse(Call<List<ModelDataUser>> call, Response<List<ModelDataUser>> response) {
+            public void onResponse(Call<ModelDataUser> call, Response<ModelDataUser> response) {
 
-                // tambahkan
-                dataLoginUser.clear();
-                if (response.isSuccessful() && !response.body().isEmpty()) {
-
-                    String imel = response.body().get(0).getEmailUser();
-                    String pass = response.body().get(0).getPasswordUser();
-
-                    if (log_email.getText().toString().trim().equals("")) {
-                        log_email.setError("Email Kosong !!");
-                    }
-                    if (log_password.getText().toString().trim().equals("")) {
-                        log_password.setError("Password Kosong !!");
-                    }
-
-                    if (email.trim().equals(imel) && password.trim().equals(pass)) {
-                        Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-                        intent.putExtra("aidi_user", response.body().get(0).getId_user());
-                        intent.putExtra("nama_user", response.body().get(0).getNama_user());
-                        intent.putExtra("nomor_user", response.body().get(0).getNotelp_user());
-                        startActivity(intent);
-                        Toast.makeText(LoginActivity.this, "Selamat Datang, " + response.body().get(0).getNama_user() + " !!", Toast.LENGTH_LONG).show();
-                        finish();
-                        loading.dismiss();
-                    }
-
+                ModelDataUser modus = response.body();
+                assert modus != null;
+                if (modus.getStatus() == 200)
+                {
+                    Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                    intent.putExtra("aidi_user", modus.getId_user());
+                    intent.putExtra("nama_user", modus.getNama_user());
+                    intent.putExtra("nomor_user", modus.getNotelp_user());
+                    startActivity(intent);
+                    Toast.makeText(LoginActivity.this, "Selamat Datang, " + modus.getNama_user() + " !!", Toast.LENGTH_LONG).show();
+                    loading.dismiss();
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Email / Password salah !!", Toast.LENGTH_SHORT).show();
                 }
@@ -169,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<ModelDataUser>> call, Throwable t) {
+            public void onFailure(Call<ModelDataUser> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Error Retrive Data from Server!!!", Toast.LENGTH_LONG).show();
                 loading.dismiss();
             }

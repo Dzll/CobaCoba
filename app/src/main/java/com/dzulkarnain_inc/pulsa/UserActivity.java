@@ -127,7 +127,6 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<ModelDataTransaksi>> call, Response<List<ModelDataTransaksi>> response) {
 
-                // tambahkan
                 dataTransaksi.clear();
                 if (response.isSuccessful()) {
                     int jumlah = response.body().size();
@@ -136,14 +135,14 @@ public class UserActivity extends AppCompatActivity {
 
                         ModelDataTransaksi data = new ModelDataTransaksi(
                                 response.body().get(i).getId_transaksi(),
-                                response.body().get(i).getJumlah_pulsa(),
+                                response.body().get(i).getNohp_beli(),
+                                response.body().get(i).getTanggal(),
                                 response.body().get(i).getNama_user(),
-                                response.body().get(i).getTelepon(),
-                                response.body().get(i).getHarga_pulsa(),
-                                response.body().get(i).getTanggal());
+                                response.body().get(i).getJumlah_pulsa(),
+                                response.body().get(i).getHarga_pulsa()
+                        );
                         dataTransaksi.add(data);
                         Log.d("RESPON", "onResponse: " + response.body().get(i).getId_transaksi());
-
                     }
                     listview.setVisibility(View.VISIBLE);
                     adapter = new ListDataTransaksi(UserActivity.this, R.layout.item_transaksi, dataTransaksi);
@@ -151,14 +150,17 @@ public class UserActivity extends AppCompatActivity {
 
                     loading.dismiss();
                 }
+//                Toast.makeText(UserActivity.this, "MasuQQ", Toast.LENGTH_LONG).show();
+                loading.dismiss();
             }
 
             @Override
             public void onFailure(Call<List<ModelDataTransaksi>> call, Throwable t) {
-                String error = "Error Retrive Data from Server!!!\n" + t.getMessage();
-                text_load.setText(error);
-                Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_network);
-                icon_load.setImageBitmap(icon);
+//                String error = "Error Retrive Data from Server!!!\n" + t.getMessage();
+//                text_load.setText(error);
+//                Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_network);
+//                icon_load.setImageBitmap(icon);
+                Toast.makeText(UserActivity.this, "Error disini!!", Toast.LENGTH_LONG).show();
                 loading.dismiss();
             }
         });

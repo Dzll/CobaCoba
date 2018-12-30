@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PembayaranPulsa extends AppCompatActivity {
 
-    String ID_PULSA, ID_USER_BELI, NAMA_USER_BELI;
+    String ID_PULSA,JUMLAH_PULSA, HARGA_PULSA, ID_USER_BELI, NAMA_USER_BELI;
 
     TextView harga_pl, jumlah_pl, beli_id, beli_nama;
     ProgressDialog loading;
@@ -52,6 +52,8 @@ public class PembayaranPulsa extends AppCompatActivity {
         final Date currentTime = new java.sql.Date(System.currentTimeMillis());
 
         ID_PULSA = getIntent().getStringExtra(ModelData.idPulsa);
+        JUMLAH_PULSA = getIntent().getStringExtra("jum");
+        HARGA_PULSA = getIntent().getStringExtra("hrg");
         SharedPreferences sharedPreferences = getSharedPreferences("kirim_datanya", MODE_PRIVATE);
         ID_USER_BELI = sharedPreferences.getString("kirim_id", "");
         NAMA_USER_BELI = sharedPreferences.getString("kirim_nama", "");
@@ -61,8 +63,11 @@ public class PembayaranPulsa extends AppCompatActivity {
         beli_id = (TextView)findViewById(R.id.beli_id);
         beli_nama = (TextView)findViewById(R.id.beli_nama);
 
+        harga_pl.setText(HARGA_PULSA);
+        jumlah_pl.setText(JUMLAH_PULSA);
         beli_id.setText(ID_USER_BELI);
         beli_nama.setText(NAMA_USER_BELI);
+
 
         final TextView ptx_nomor = (TextView)findViewById(R.id.ptx_nomor);
         final EditText pet_nomor = (EditText)findViewById(R.id.pet_nomor);
@@ -106,7 +111,7 @@ public class PembayaranPulsa extends AppCompatActivity {
                                     intent.putExtra("total", harga_pl.getText().toString());
 
                                     loading = ProgressDialog.show(PembayaranPulsa.this, null, "Please wait...", true, false);
-                                    tambahDataTransaksi(beli_id.getText().toString(), beli_nama.getText().toString(), pet_nomor.getText().toString(), ID_PULSA, jumlah_pl.getText().toString(), harga_pl.getText().toString(), currentTime.toString());
+                                    tambahDataTransaksi(beli_id.getText().toString(), beli_nama.getText().toString(), pet_nomor.getText().toString(), ID_PULSA, jumlah_pl.getText().toString(), harga_pl.getText().toString());
 
                                     startActivity(intent);
                                     finish();
@@ -118,43 +123,39 @@ public class PembayaranPulsa extends AppCompatActivity {
         });
 
 
-        bindData();
+        //bindData();
 
     }
 
-    public void tambahDataTransaksi(String id_user, String nama_user, String telepon, String id_pulsa, String jumlah_pulsa, String harga_pulsa,String tanggal) {
+    public void tambahDataTransaksi(String id_user, String nama_user, String telepon, String id_pulsa, String jumlah_pulsa, String harga_pulsa) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(MainActivity.ROOT_URL)
                 .addConverterFactory(new StringConverter())
                 .build();
-
         ApiService service = retrofit.create(ApiService.class);
-
-        Call<ResponseBody> call = service.transaksi_insert(id_user, nama_user, telepon, id_pulsa, jumlah_pulsa, harga_pulsa, tanggal);
+        Call<ResponseBody> call = service.transaksi_insert(id_user, nama_user, telepon, id_pulsa, jumlah_pulsa, harga_pulsa);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                BufferedReader reader = null;
-
-                String respon = "";
-
-                try {
-                    reader = new BufferedReader(new InputStreamReader(response.body().byteStream()));
-                    respon = reader.readLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                BufferedReader reader = null;
+//
+//                String respon = "";
+//
+//                try {
+//                    reader = new BufferedReader(new InputStreamReader(response.body().byteStream()));
+//                    respon = reader.readLine();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
                 Toast.makeText(PembayaranPulsa.this, "Transaksi Berhasil", Toast.LENGTH_SHORT).show();
                 loading.dismiss();
-                //finish();
-
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(PembayaranPulsa.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PembayaranPulsa.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -172,31 +173,5 @@ public class PembayaranPulsa extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void bindData() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MainActivity.ROOT_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ApiService service = retrofit.create(ApiService.class);
-        Call<List<ModelData>> call = service.getSingleDataPulsa(ID_PULSA);
-        call.enqueue(new Callback<List<ModelData>>() {
-            @Override
-            public void onResponse(Call<List<ModelData>> call, Response<List<ModelData>> response) {
-                if (response.isSuccessful()){
-                    for (int i = 0; i < response.body().size(); i++){
-                        harga_pl.setText(response.body().get(i).getHarga_pulsa());
-                        jumlah_pl.setText(response.body().get(i).getJumlah_pulsa());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ModelData>> call, Throwable t) {
-
-            }
-        });
     }
 }

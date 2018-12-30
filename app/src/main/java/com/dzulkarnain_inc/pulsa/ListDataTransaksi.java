@@ -55,7 +55,7 @@ public class ListDataTransaksi extends ArrayAdapter<ModelDataTransaksi> {
         holder.KODE_TRANSAKSI.setText(list.get(position).getId_transaksi());
         holder.JUMLAH_PULSA.setText(list.get(position).getJumlah_pulsa());
         holder.NAMA_USER.setText(list.get(position).getNama_user());
-        holder.TELEPON.setText(list.get(position).getTelepon());
+        holder.TELEPON.setText(list.get(position).getNohp_beli());
         holder.HARGA.setText("Rp "+list.get(position).getHarga_pulsa());
         holder.TANGGAL.setText(list.get(position).getTanggal());
 

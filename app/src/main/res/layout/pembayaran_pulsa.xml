@@ -35,6 +35,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorHitam"
                         android:textSize="20dp"
                         android:text="Rp "
                         />
@@ -45,6 +46,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorHitam"
                         android:textSize="20dp"
                         android:text="nominal"
                         />
@@ -64,7 +66,25 @@
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/colorHitam"
-                        android:text="Pulsa : "
+                        android:text="Pulsa"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorHitam"
+                        android:text=" ~ "
+                        />
+                    <TextView
+                        android:id="@+id/beli_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorHitam"
+                        android:text="Beli ID"
+                        android:visibility="gone"
                         />
                     <TextView
                         android:id="@+id/jml_pls"
@@ -78,12 +98,22 @@
 
                 <TableRow>
                     <TextView
+                        android:id="@+id/beli_nama"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:textStyle="bold"
                         android:textColor="@color/colorHitam"
-                        android:text="Dzulkarnainc - "
+                        android:text="Dzulkarnainc"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorHitam"
+                        android:text=" ~ "
                         />
 
                     <EditText

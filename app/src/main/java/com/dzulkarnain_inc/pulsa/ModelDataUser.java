@@ -5,25 +5,28 @@ import com.google.gson.annotations.SerializedName;
 
 public class ModelDataUser {
 
-    @SerializedName("id_user")
+    @SerializedName("id")
     @Expose
     private String id_user;
 
-    @SerializedName("nama_user")
+    @SerializedName("name")
     @Expose
     private String nama_user;
 
-    @SerializedName("notelp_user")
+    @SerializedName("no_hp")
     @Expose
     private String notelp_user;
 
-    @SerializedName("email_user")
+    @SerializedName("email")
     @Expose
     private String email_user;
 
-    @SerializedName("password_user")
+    @SerializedName("password")
     @Expose
     private String password_user;
+
+    @SerializedName("status")
+    private int status;
 
     public static final String idUser = "ID_USER";
     //public static final String nama_mahasiswa = "ID_MAHASISWA";
@@ -32,6 +35,14 @@ public class ModelDataUser {
     public ModelDataUser(String email_user, String password_user) {
         this.email_user = email_user;
         this.password_user = password_user;
+    }
+
+    public void setStatus (int status){
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
     }
 
     public String getId_user() {

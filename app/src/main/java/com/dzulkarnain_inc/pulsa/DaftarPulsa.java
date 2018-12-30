@@ -103,7 +103,6 @@ public class DaftarPulsa extends AppCompatActivity{
             @Override
             public void onResponse(Call<List<ModelData>> call, Response<List<ModelData>> response) {
 
-                // tambahkan
                 datapulsa.clear();
                 if (response.isSuccessful()) {
                     int jumlah = response.body().size();

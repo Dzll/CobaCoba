@@ -8,9 +8,8 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
     //public static final String ROOT_URL = "http://192.168.43.215/Android%20Studio/PulsaKu/";
-    public static final String ROOT_URL = "http://192.168.10.17/Android%20Studio/PulsaKu/";
     //public static final String ROOT_URL = "http://100.66.8.27/Android%20Studio/PulsaKu/";
-    //public static final String ROOT_URL = "http://192.168.43.215/Laravel/PulsaKu/public/api/";
+    public static final String ROOT_URL = "http://192.168.43.215/Laravel/PulsaKu/public/api/pulsa/";
 
     private static int SPLASH_TIME_OUT = 2000;
 

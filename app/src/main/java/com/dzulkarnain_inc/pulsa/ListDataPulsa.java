@@ -21,6 +21,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.zip.DataFormatException;
 
 public class ListDataPulsa extends ArrayAdapter<ModelData> {
@@ -72,6 +73,8 @@ public class ListDataPulsa extends ArrayAdapter<ModelData> {
 
                 Intent intent = new Intent(context, PembayaranPulsa.class);
                 intent.putExtra(ModelData.idPulsa, list.get(position).getIdPulsa());
+                intent.putExtra("jum", list.get(position).getJumlah_pulsa());
+                intent.putExtra("hrg", list.get(position).getHarga_pulsa());
                 context.startActivity(intent);
 
             }

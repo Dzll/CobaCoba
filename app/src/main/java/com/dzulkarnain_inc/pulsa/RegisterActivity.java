@@ -75,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                     tambahDataRegister(a,b,c,d);
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     RegisterActivity.this.overridePendingTransition(R.transition.none, R.transition.fade_out);
+                    finish();
                 }
 
             }
@@ -90,7 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     public void tambahDataRegister(String nama, String telp, String email, String passw) {
@@ -98,37 +98,20 @@ public class RegisterActivity extends AppCompatActivity {
                 .baseUrl(MainActivity.ROOT_URL)
                 .addConverterFactory(new StringConverter())
                 .build();
-
         ApiService service = retrofit.create(ApiService.class);
-
         Call<ResponseBody> call = service.registerInsert(nama, telp, email, passw);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                BufferedReader reader = null;
-
-                String respon = "";
-
-                try {
-                    reader = new BufferedReader(new InputStreamReader(response.body().byteStream()));
-                    respon = reader.readLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
                 Toast.makeText(RegisterActivity.this, "Register Berhasil", Toast.LENGTH_SHORT).show();
                 loading.dismiss();
-                //finish();
-
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }
