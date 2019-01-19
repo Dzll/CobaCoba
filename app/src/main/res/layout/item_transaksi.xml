@@ -57,17 +57,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
-                            android:textColor="@color/colorSuccess"
-                            android:text=" - Success"/>
+                            android:text=" - "/>
+                        <TextView
+                            android:id="@+id/trans_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Status"/>
                     </TableRow>
 
                 </TableLayout>
-                <TextView
-                    android:id="@+id/trans_jumlahpulsa"
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Jumlah Pulsa"/>
+                    android:layout_height="wrap_content">
+
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/trans_jumlahpulsa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Jumlah Pulsa"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text=" - "/>
+
+                        <TextView
+                            android:id="@+id/trans_operator"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Operator"/>
+
+                    </TableRow>
+
+                </TableLayout>
 
                 <TableLayout
                     android:layout_width="wrap_content"

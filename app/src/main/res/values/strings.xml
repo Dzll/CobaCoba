@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PulsaKu</string>
+
+    <string-array name="operator_array">
+        <item>Indosat</item>
+        <item>Telkomsel</item>
+        <item>Smartfren</item>
+        <item>XL</item>
+    </string-array>
 </resources>

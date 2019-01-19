@@ -35,6 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UserActivity extends AppCompatActivity {
 
     ArrayList<ModelDataTransaksi> dataTransaksi = new ArrayList<ModelDataTransaksi>();
+    ArrayList<ModelPulsaPay> pulsaPay = new ArrayList<ModelPulsaPay>();
 
     ListView listview;
     ListDataTransaksi adapter;
@@ -121,6 +122,35 @@ public class UserActivity extends AppCompatActivity {
 
         ApiService service = retrofit.create(ApiService.class);
 
+        Call<List<ModelPulsaPay>> calling = service.getPulsaPay(aidi.getText().toString().trim());
+        calling.enqueue(new Callback<List<ModelPulsaPay>>() {
+            @Override
+            public void onResponse(Call<List<ModelPulsaPay>> call, Response<List<ModelPulsaPay>> response) {
+
+                if (response.isSuccessful() && !response.body().isEmpty() ){
+                    ModelPulsaPay pay = new ModelPulsaPay(
+                            response.body().get(0).getNominal_pay(),
+                            response.body().get(0).getId_pay()
+                    );
+                    pulsaPay.add(pay);
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("uang_saldo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("uang", response.body().get(0).getNominal_pay());
+                    editor.putString("uang_id", response.body().get(0).getId_pay());
+                    editor.apply();
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelPulsaPay>> call, Throwable t) {
+                Toast.makeText(UserActivity.this, "Error : Saldo Kosong Cuyyy", Toast.LENGTH_LONG).show();
+            }
+        });
+
         loading = ProgressDialog.show(UserActivity.this, null, "Please wait...", true, false);
         Call<List<ModelDataTransaksi>> call = service.getTransaksiData(aidi.getText().toString());
         call.enqueue(new Callback<List<ModelDataTransaksi>>() {
@@ -139,7 +169,9 @@ public class UserActivity extends AppCompatActivity {
                                 response.body().get(i).getTanggal(),
                                 response.body().get(i).getNama_user(),
                                 response.body().get(i).getJumlah_pulsa(),
-                                response.body().get(i).getHarga_pulsa()
+                                response.body().get(i).getHarga_pulsa(),
+                                response.body().get(i).getOperator(),
+                                response.body().get(i).getStatus()
                         );
                         dataTransaksi.add(data);
                         Log.d("RESPON", "onResponse: " + response.body().get(i).getId_transaksi());
@@ -150,7 +182,6 @@ public class UserActivity extends AppCompatActivity {
 
                     loading.dismiss();
                 }
-//                Toast.makeText(UserActivity.this, "MasuQQ", Toast.LENGTH_LONG).show();
                 loading.dismiss();
             }
 
@@ -254,6 +285,12 @@ public class UserActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear().commit();
         aidi.setText("Aidi");
+
+        // Hapus NOminal Saldo
+        SharedPreferences shar = getSharedPreferences("uang_saldo", MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedPreferences.edit();
+        ed.clear().commit();
+
     }
     public void kirimData(String nama, String nomor){
         SharedPreferences sharedPreferences = getSharedPreferences("kirim_datanya", MODE_PRIVATE);

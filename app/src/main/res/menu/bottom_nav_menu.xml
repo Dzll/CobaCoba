@@ -12,7 +12,7 @@
         android:id="@+id/menu_topup"
         android:enabled="true"
         android:icon="@drawable/ic_action_cash"
-        android:title="Cash"
+        android:title="PulsaPay"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_user"

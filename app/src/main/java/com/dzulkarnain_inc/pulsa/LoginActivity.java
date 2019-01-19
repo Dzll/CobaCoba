@@ -16,6 +16,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -75,6 +76,9 @@ public class LoginActivity extends AppCompatActivity {
 
         log_email = (EditText) findViewById(R.id.log_email);
         log_password = (EditText) findViewById(R.id.log_password);
+
+        log_email.setMaxLines(1);
+        log_email.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {

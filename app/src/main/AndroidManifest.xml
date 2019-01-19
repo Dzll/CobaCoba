@@ -22,10 +22,10 @@
         <activity android:name=".SaldoActivity"/>
         <activity android:name=".UserActivity"/>
         <activity android:name=".PembayaranPulsa"/>
-        <activity android:name=".PembayaranTopUp"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".NotaPulsa"/>
+        <activity android:name=".ActivityBankBayar"/>
     </application>
 
 </manifest>

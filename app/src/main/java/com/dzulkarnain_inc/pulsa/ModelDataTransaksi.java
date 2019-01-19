@@ -37,17 +37,27 @@ public class ModelDataTransaksi {
     @Expose
     private String harga_pulsa;
 
+    @SerializedName("operator")
+    @Expose
+    private String operator;
+
+    @SerializedName("status")
+    @Expose
+    private String status;
+
     public static final String idTransaksi = "ID_TRANSAKSI";
     //public static final String nama_mahasiswa = "ID_MAHASISWA";
     //public static final String jurusan_mahasiswa = "ID_MAHASISWA";
 
-    public ModelDataTransaksi(String id_transaksi, String nohp_beli, String tanggal, String nama, String jumlah, String harga) {
+    public ModelDataTransaksi(String id_transaksi, String nohp_beli, String tanggal, String nama, String jumlah, String harga, String operator, String status) {
         this.id_transaksi = id_transaksi;
         this.nohp_beli = nohp_beli;
         this.tanggal = tanggal;
         this.nama_user = nama;
         this.jumlah_pulsa = jumlah;
         this.harga_pulsa = harga;
+        this.operator = operator;
+        this.status = status;
     }
 
     public String getId_transaksi() { return id_transaksi; }
@@ -73,6 +83,14 @@ public class ModelDataTransaksi {
     public String getHarga_pulsa() { return harga_pulsa; }
 
     public void setHarga_pulsa(String harga_pulsa) { this.harga_pulsa = harga_pulsa; }
+
+    public String getOperator() { return operator; }
+
+    public void setOperator(String operator) { this.operator = operator; }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
 
 
 }

@@ -7,9 +7,12 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    //public static final String ROOT_URL = "http://192.168.43.215/Android%20Studio/PulsaKu/";
-    //public static final String ROOT_URL = "http://100.66.8.27/Android%20Studio/PulsaKu/";
-    public static final String ROOT_URL = "http://192.168.43.215/Laravel/PulsaKu/public/api/pulsa/";
+    //public static final String ROOT_URL = "http://192.168.43.215/Laravel/PulsaKu/public/api/pulsa/";
+    public static final String ROOT_URL = " http://d2l.kuy.web.id/api/pulsa/";
+    //public static final String ROOT_URL = "http://100.66.6.221/Laravel/PulsaKu/public/api/pulsa/";
+    //public static final String ROOT_URL = "http://192.168.10.17/Laravel/PulsaKu/public/api/pulsa/";
+    //public static final String ROOT_URL = "http://192.168.100.31/Laravel/PulsaKu/public/api/pulsa/";
+    //public static final String ROOT_URL = "http://100.66.8.121/Laravel/PulsaKu/public/api/pulsa/";
 
     private static int SPLASH_TIME_OUT = 2000;
 
@@ -24,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
         new android.os.Handler().postDelayed(new Runnable(){
             public void run(){
+
                 Intent home = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(home);
                 MainActivity.this.overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
                 finish();
+
             }
         },SPLASH_TIME_OUT);
 

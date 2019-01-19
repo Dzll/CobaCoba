@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText nama, notelp, email, pass;
+    EditText nama, notelp, email, pass, conf_pass;
     Button reg;
     ProgressDialog loading;
 
@@ -41,7 +42,18 @@ public class RegisterActivity extends AppCompatActivity {
         notelp = (EditText)findViewById(R.id.reg_telepon);
         email = (EditText)findViewById(R.id.reg_email);
         pass = (EditText)findViewById(R.id.reg_password);
+        conf_pass = (EditText)findViewById(R.id.reg_confirm_password);
         reg = (Button)findViewById(R.id.btn_register);
+
+        nama.setMaxLines(1);
+        nama.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        notelp.setMaxLines(1);
+        notelp.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        email.setMaxLines(1);
+        email.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        pass.setMaxLines(1);
+        pass.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String b = notelp.getText().toString();
                 String c = email.getText().toString();
                 String d = pass.getText().toString();
+                String e = conf_pass.getText().toString();
 
                 boolean ceknul = true;
 
@@ -69,13 +82,21 @@ public class RegisterActivity extends AppCompatActivity {
                     ceknul = true;
                     pass.setError("Password kosong!!");
                 }
+                if (e.equals("")){
+                    ceknul = true;
+                    conf_pass.setError("Confirm Password!!");
+                }
 
-                if (!a.equals("") && !b.equals("") && !c.equals("") && !d.equals("")){
-                    loading = ProgressDialog.show(RegisterActivity.this, null, "Please wait...", true, false);
-                    tambahDataRegister(a,b,c,d);
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    RegisterActivity.this.overridePendingTransition(R.transition.none, R.transition.fade_out);
-                    finish();
+                if (!a.equals("") && !b.equals("") && !c.equals("") && !d.equals("") && !e.equals("")){
+                    if (d.equals(e)){
+                        loading = ProgressDialog.show(RegisterActivity.this, null, "Please wait...", true, false);
+                        tambahDataRegister(a,b,c,d);
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        RegisterActivity.this.overridePendingTransition(R.transition.none, R.transition.fade_out);
+                        finish();
+                    }else{
+                        Toast.makeText(RegisterActivity.this, "Konfirmasi Password tidak sama !!", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }

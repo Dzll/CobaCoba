@@ -26,7 +26,7 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="8dp">
 
                 <TableRow>
 
@@ -140,13 +140,50 @@
                         android:visibility="gone"
                         />
 
-                    <Button
-                        android:id="@+id/oke"
-                        android:layout_height="37dp"
+                    <!--<Button-->
+                        <!--android:id="@+id/oke"-->
+                        <!--android:layout_height="37dp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:backgroundTint="@color/colorBiru"-->
+                        <!--android:textColor="@color/colorPutih"-->
+                        <!--android:text="OK"-->
+                        <!--/>-->
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
                         android:layout_width="match_parent"
-                        android:backgroundTint="@color/colorBiru"
-                        android:textColor="@color/colorPutih"
-                        android:text="OK"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorHitam"
+                        android:text="Operator"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorHitam"
+                        android:text=" ~ "
+                        />
+
+                    <Spinner
+                        android:id="@+id/spin_operator"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:tooltipText="Pilih Operrator">
+
+                    </Spinner>
+
+                    <ImageView
+                        android:id="@+id/logo_operator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+
                         />
 
                 </TableRow>
@@ -196,18 +233,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="7dp"
-                        android:text="Bayar"/>
+                        android:text="Bayar PulsaPay"/>
 
-                    <TextView
-                        android:id="@+id/bayar_topUp"
-                        android:layout_below="@id/txbyrrr"
-                        android:layout_width="wrap_content"
+                    <TableLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
-                        android:textStyle="bold"
-                        android:text="Rp 999000"
-                        android:padding="7dp"
-                        />
+                        android:layout_marginLeft="8dp">
+
+                        <TableRow>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textStyle="bold"
+                                android:text="Rp "
+                                />
+
+                            <TextView
+                                android:id="@+id/bayar_topUp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textStyle="bold"
+                                android:text="999000"
+                                android:padding="7dp"
+                                />
+                        </TableRow>
+
+
+                    </TableLayout>
                 </LinearLayout>
 
                 <ImageView
@@ -216,7 +270,7 @@
                     android:layout_weight="1"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_action_right"/>
+                    android:src="@drawable/ic_action_right_siku"/>
             </TableRow>
         </TableLayout>
     </android.support.v7.widget.CardView>
@@ -237,6 +291,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_mandiri"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -270,7 +325,7 @@
                         android:layout_marginTop="18dp"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_action_right"
+                        android:src="@drawable/ic_action_right_siku"
                         />
                 </TableRow>
             </TableLayout>
@@ -310,7 +365,7 @@
                         android:layout_marginTop="18dp"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_action_right"
+                        android:src="@drawable/ic_action_right_siku"
                         />
                 </TableRow>
             </TableLayout>
@@ -350,7 +405,7 @@
                         android:layout_marginTop="18dp"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_action_right"
+                        android:src="@drawable/ic_action_right_siku"
                         />
                 </TableRow>
             </TableLayout>
@@ -390,47 +445,7 @@
                         android:layout_marginTop="18dp"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_action_right"
-                        />
-                </TableRow>
-            </TableLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="6dp"
-            app:cardElevation="1dp"
-            app:cardCornerRadius="5dp">
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TableRow>
-                    <ImageView
-                        android:layout_weight="0.43"
-                        android:layout_width="60dp"
-                        android:src="@mipmap/ic_cimb"
-                        android:layout_height="60dp" />
-
-                    <TextView
-                        android:layout_weight="0.95"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="18.5dp"
-                        android:textSize="17dp"
-                        android:text="Bank CIMB"
-                        />
-
-                    <ImageView
-                        android:layout_weight="0.66"
-                        android:layout_marginTop="18dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ic_action_right"
+                        android:src="@drawable/ic_action_right_siku"
                         />
                 </TableRow>
             </TableLayout>

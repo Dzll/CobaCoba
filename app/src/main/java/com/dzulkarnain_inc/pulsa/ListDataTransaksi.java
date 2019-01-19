@@ -2,6 +2,7 @@ package com.dzulkarnain_inc.pulsa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,8 @@ public class ListDataTransaksi extends ArrayAdapter<ModelDataTransaksi> {
             holder.TELEPON = (TextView) convertView.findViewById(R.id.trans_nomer);
             holder.HARGA = (TextView) convertView.findViewById(R.id.trans_hargapulsa);
             holder.TANGGAL = (TextView) convertView.findViewById(R.id.trans_tanggal);
+            holder.OPERATOR = (TextView) convertView.findViewById(R.id.trans_operator);
+            holder.STATUS = (TextView) convertView.findViewById(R.id.trans_status);
 
             convertView.setTag(holder);
 
@@ -58,6 +61,17 @@ public class ListDataTransaksi extends ArrayAdapter<ModelDataTransaksi> {
         holder.TELEPON.setText(list.get(position).getNohp_beli());
         holder.HARGA.setText("Rp "+list.get(position).getHarga_pulsa());
         holder.TANGGAL.setText(list.get(position).getTanggal());
+        holder.OPERATOR.setText(list.get(position).getOperator());
+        if (list.get(position).getStatus().equals("0")){
+            holder.STATUS.setText("Belum Bayar");
+            holder.STATUS.setTextColor(Color.parseColor("#ef1515"));
+        }else if (list.get(position).getStatus().equals("1")){
+            holder.STATUS.setText("Bayar ~ Belum Dikirim");
+            holder.STATUS.setTextColor(Color.parseColor("#0086ce"));
+        }else {
+            holder.STATUS.setText("Success ~ Terkirim");
+            holder.STATUS.setTextColor(Color.parseColor("#0dba32"));
+        }
 
         return convertView;
     }
@@ -90,6 +104,8 @@ public class ListDataTransaksi extends ArrayAdapter<ModelDataTransaksi> {
         TextView TELEPON;
         TextView HARGA;
         TextView TANGGAL;
+        TextView OPERATOR;
+        TextView STATUS;
 
     }
 }

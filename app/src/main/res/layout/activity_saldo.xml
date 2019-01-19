@@ -33,23 +33,51 @@
                 android:textColor="@color/colorHitam"
                 android:layout_marginLeft="30dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="17dp"
+                android:textSize="14dp"
                 android:text="Saldo Cash"/>
 
-            <TextView
+            <TableLayout
+                android:id="@+id/nomnom"
                 android:layout_below="@id/tx_s"
                 android:layout_toRightOf="@+id/img_cash"
-                android:id="@+id/cash_nominal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_marginLeft="30dp"
                 android:layout_marginBottom="5dp"
-                android:text="RP 999XXX"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="RP "/>
+
+                    <TextView
+                        android:id="@+id/cash_nominal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:text="999XXX"/>
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/cash_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="idid"
+                        />
+
+                </TableRow>
+
+            </TableLayout>
+
 
             <Button
                 android:layout_toRightOf="@id/img_cash"
-                android:layout_below="@id/cash_nominal"
+                android:layout_below="@id/nomnom"
                 android:id="@+id/btn_topup"
                 android:layout_alignParentRight="false"
                 android:layout_width="wrap_content"
@@ -88,6 +116,18 @@
             android:text="198299 Pengguna telah melakukan TopUp dalam 30 hari terakhir."/>
 
     </LinearLayout>
+
+    <ListView
+        android:layout_below="@+id/crdpls"
+        android:layout_marginTop="45dp"
+        android:id="@+id/listPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="6dp"
+        android:scrollbars="vertical"
+        android:layout_marginBottom="50dp"
+        />
 
     <include layout="@layout/bottom_menu"/>
 
